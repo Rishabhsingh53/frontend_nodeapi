@@ -1,0 +1,42 @@
+<html>
+    <body>
+<div class="container2">
+    <table class="table" border="1">
+      <thead>
+        <tr>
+          <th>NAME</th>
+          <th>AGE</th>
+          <th>CITY</th>
+        </tr>
+      </thead>
+      <tbody id="data">
+      </tbody>
+  </table>
+</div>
+
+<script>
+fetch("https://bagdeapp37.herokuapp.com/", {
+}).then(
+  response => {
+    response.json().then(
+      data =>{
+       
+        console.table(data);
+        if (data.length > 0){
+          var temp = "";
+          data.forEach((x) => {
+            temp += "<tr>";
+            temp += "<td>"+ x.name +"</td>";
+            temp += "<td>"+ x.age +"</td>";
+            temp += "<td>"+ x.city +"</td>";
+            temp += "</tr>"
+          });
+              
+          document.getElementById("data").innerHTML = temp;
+        }
+      }
+    )
+})
+</script>
+</body>
+</html>
